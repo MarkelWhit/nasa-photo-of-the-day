@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-
+import Plans from './Plans'
 import axios from 'axios'
 import { BASE_URL, API_KEY } from './index.js'
 
@@ -8,14 +8,14 @@ import { BASE_URL, API_KEY } from './index.js'
 
 function App() {
  const [image, setImage] = useState()
- const [events, setEvents] = useEffect([])
+ //const [events, setEvents] = useSta()
  //const [] = useState(null)
 
  useEffect(() => {
 axios.get(`${BASE_URL}/planetary/${API_KEY}`)
   .then(res => {
-    console.log(res)
-    setEvents(res.data)
+    console.log(res.data);
+    setImage(res.data.hdurl)
   })
   .catch(err => {
     console.log(err)
@@ -31,10 +31,10 @@ return (
         app! Have fun <span role="img" aria-label='go!'>🚀</span>!
       </p>
       <div id='image'>
-        <img src=''/> 
+        
+        <img src= {image}/> 
       </div> 
-
-      
+      <Plans />
     </div>
   );
 }
